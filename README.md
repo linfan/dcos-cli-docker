@@ -28,10 +28,19 @@ EMAIL=${EMAIL:-'apollo@capgemini.com'}
 You can override any value at run time as follows:
 
 ```bash
-docker run -v `pwd`/chronos_config:/config \
+docker run --rm -v `pwd`:/work --workdir=/work \
            -e MESOS_MASTER_URL='http://172.31.1.11:5050' \
            -e MARATHON_URL='http://172.31.1.11:8080' \
-           -it capgemini:dcos-cli package install --options=config --yes chronos
+           -it capgemini:dcos-cli --pkg-update package install --options=config --yes chronos
+```
+
+When use `package install` command, make sure add `--pkg-update` parameter.
+
+```bash
+docker run --rm -v `pwd`/chronos_config:/config \
+           -e MESOS_MASTER_URL='http://172.31.1.11:5050' \
+           -e MARATHON_URL='http://172.31.1.11:8080' \
+           -it capgemini:dcos-cli marathon app add demo/demo01.json
 ```
 
 ### Why?
