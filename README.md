@@ -31,7 +31,7 @@ You can override any value at run time as follows:
 docker run --rm -v `pwd`:/work --workdir=/work \
            -e MESOS_MASTER_URL='http://172.31.1.11:5050' \
            -e MARATHON_URL='http://172.31.1.11:8080' \
-           -it capgemini:dcos-cli --pkg-update package install --options=config --yes chronos
+           -it capgemini:dcos-cli marathon app add demo/demo01.json
 ```
 
 When use `package install` command, make sure add `--pkg-update` parameter.
@@ -40,7 +40,7 @@ When use `package install` command, make sure add `--pkg-update` parameter.
 docker run --rm -v `pwd`/chronos_config:/config \
            -e MESOS_MASTER_URL='http://172.31.1.11:5050' \
            -e MARATHON_URL='http://172.31.1.11:8080' \
-           -it capgemini:dcos-cli marathon app add demo/demo01.json
+           -it capgemini:dcos-cli --pkg-update package install --options=config --yes chronos
 ```
 
 ### Why?
